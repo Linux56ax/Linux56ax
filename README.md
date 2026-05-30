@@ -1,21 +1,140 @@
-# 💫 About Me:
-🔭 I’m currently working on https://github.com/noob-master-jpb/PyOS, https://github.com/noob-master-jpb/drone101<br>🤝 I’m looking for help with NLP[AI] and ML<br>🌱 I’m currently learning AI algorithms and Basics of AI, Mathematics for Machine Learning <br>
+<h1 align="center">
+  Hi <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30"> I'm Subham Majumdar
+</h1>
+<h3 align="center">
+  AI & ML (Statistical and Physics informed) | IoT and Embedded System
+</h3>
 
+- Currently working on [SuSi](https://github.com/alitacodes/SuSi)
 
-## 🌐 Socials:
-[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/Subham Majumdar) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/subhi_7374) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/Subham Majumdar) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:subhammajumdar.09123@gmail.com) 
+- Learning **Physics Informed Machine Learning**
 
-# 💻 Tech Stack:
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Apache Hadoop](https://img.shields.io/badge/Apache%20Hadoop-66CCFF?style=for-the-badge&logo=apachehadoop&logoColor=black) ![Apache Hive](https://img.shields.io/badge/Apache%20Hive-FDEE21?style=for-the-badge&logo=apachehive&logoColor=black) ![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![ROS](https://img.shields.io/badge/ros-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white) ![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=for-the-badge&logo=Raspberry-Pi) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-000?style=for-the-badge&logo=apachekafka) ![TOR](https://img.shields.io/badge/tor-%237E4798.svg?style=for-the-badge&logo=tor-project&logoColor=white)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=Linux56ax&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=Linux56ax&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=Linux56ax&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+- Research study on **Quantum Computation**
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=Linux56ax&limit=5&theme=dark&combine_all_yearly_contributions=true)
+- Deepening expertise in **Machine Learning**
 
----
-[![](https://visitcount.itsvg.in/api?id=Linux56ax&icon=2&color=0)](https://visitcount.itsvg.in)
+<h3 align="left">Connect with me:</h3>
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+<p align="left">
+<a href="https://linkedin.com/in/subham-majumdar-19a403244" target="blank">
+<img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="subham-majumdar-19a403244" height="30" width="40" />
+</a>
+
+<a href="https://www.leetcode.com/_subham_majumdar_" target="blank">
+<img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="_subham_majumdar_" height="30" width="40" />
+</a>
+
+<a href="https://auth.geeksforgeeks.org/user/subhammajuooto" target="blank">
+<img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/geeks-for-geeks.svg" alt="subhammajuooto" height="30" width="40" />
+</a>
+</p>
+
+<h3 align="left">Languages and Tools:</h3>
+
+<p align="left">
+
+<a href="https://www.arduino.cc/" target="_blank">
+<img src="https://skillicons.dev/icons?i=arduino&theme=light" />
+</a>
+
+<a href="https://www.cprogramming.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=c&theme=light" />
+</a>
+
+<a href="https://isocpp.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=cpp&theme=light" />
+</a>
+
+<a href="https://www.python.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=python&theme=light" />
+</a>
+
+<a href="https://www.java.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=java&theme=light" />
+</a>
+
+<a href="https://www.djangoproject.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=django&theme=light" />
+</a>
+
+<a href="https://git-scm.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=git&theme=light" />
+</a>
+
+<a href="https://www.linux.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=linux&theme=light" />
+</a>
+
+<a href="https://www.mysql.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=mysql&theme=light" />
+</a>
+
+<a href="https://www.oracle.com/database/" target="_blank">
+<img src="https://skillicons.dev/icons?i=oracle&theme=light" />
+</a>
+
+<a href="https://www.tensorflow.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=tensorflow&theme=light" />
+</a>
+
+<a href="https://pytorch.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=pytorch&theme=light" />
+</a>
+
+<a href="https://scikit-learn.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=sklearn&theme=light" />
+</a>
+
+<a href="https://opencv.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=opencv&theme=light" />
+</a>
+
+<a href="https://pandas.pydata.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=pandas&theme=light" />
+</a>
+
+<a href="https://tailwindcss.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=tailwind&theme=light" />
+</a>
+
+<a href="https://www.tensorflow.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=tensorflow&theme=light" />
+</a>
+
+<a href="https://www.mathworks.com/products/matlab.html" target="_blank">
+<img src="https://skillicons.dev/icons?i=matlab&theme=light" />
+</a>
+
+<a href="https://aws.amazon.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=aws&theme=light" />
+</a>
+
+<a href="https://hadoop.apache.org/" target="_blank">
+<img src="https://skillicons.dev/icons?i=hadoop&theme=light" />
+</a>
+
+<a href="https://www.docker.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=docker&theme=light" />
+</a>
+
+<a href="https://github.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=github&theme=light" />
+</a>
+
+<a href="https://code.visualstudio.com/" target="_blank">
+<img src="https://skillicons.dev/icons?i=vscode&theme=light" />
+</a>
+
+</p>
+
+<p>
+<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=linux56ax&show_icons=true&locale=en&layout=compact" alt="linux56ax" />
+</p>
+
+<p>
+<img align="center" src="https://github-readme-stats.vercel.app/api?username=linux56ax&show_icons=true&locale=en" alt="linux56ax" />
+</p>
+
+<p>
+<img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=linux56ax&" alt="linux56ax" />
+</p>
