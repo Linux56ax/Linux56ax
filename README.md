@@ -128,13 +128,5 @@
 </p>
 
 <p>
-<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=linux56ax&show_icons=true&locale=en&layout=compact" alt="linux56ax" />
-</p>
-
-<p>
-<img align="center" src="https://github-readme-stats.vercel.app/api?username=linux56ax&show_icons=true&locale=en" alt="linux56ax" />
-</p>
-
-<p>
 <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=linux56ax&" alt="linux56ax" />
 </p>
