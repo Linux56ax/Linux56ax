@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix Engine Simulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #07070c; font-family: monospace; overflow: hidden; }
+        canvas { background: rgba(10, 16, 26, 0.9); border: 1px solid rgba(35, 194, 94, 0.3); }
+        .glow { text-shadow: 0 0 12px #23c25e; }
+    </style>
+</head>
+<body class="w-screen h-screen flex flex-col items-center justify-center p-6 text-white">
+
+    <div class="w-full max-w-3xl mb-4 flex justify-between items-center border-b border-zinc-800 pb-2">
+        <div>
+            <h1 class="text-xl font-bold text-emerald-400 tracking-wider glow">CONTRIBUTIONS_GAME_MODULE.EXE</h1>
+            <p class="text-xs text-zinc-500">Press ANY key to force character jump controls manual override</p>
+        </div>
+        <div id="status" class="text-xs px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded animate-pulse">
+            COMPILING SIMULATION MATRIX...
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="700" height="320" class="rounded-xl shadow-2xl shadow-black"></canvas>
+
+    <div id="dashboard" class="w-full max-w-3xl mt-6 grid grid-cols-2 gap-4 opacity-0 transition-opacity duration-1000">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=tokyonight&hide_border=true" class="w-full rounded-lg" />
+        <img src="https://github-readme-stats.vercel.app/api?username=Linux56ax&show_icons=true&theme=tokyonight&hide_border=true" class="w-full rounded-lg" />
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Matrix Parameters Setup
+        const barsCount = 28;
+        const barWidth = 18;
+        const gap = 6;
+        const startX = 28;
+        
+        let bars = [];
+        for(let i=0; i<barsCount; i++) {
+            bars.push({
+                x: startX + i * (barWidth + gap),
+                targetHeight: Math.floor(Math.random() * 160) + 20,
+                currentHeight: 10,
+                speed: Math.random() * 3 + 2
+            });
+        }
+
+        // Jumping Actor Token Data Layer
+        let player = { x: 30, y: 200, radius: 5, vx: 2.2, vy: 0, gravity: 0.35, isJumping: true };
+        let cycles = 0;
+        let compilationFinished = false;
+
+        function loop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            cycles++;
+
+            // 1. Draw and grow/shrink columns dynamically
+            bars.forEach((bar, index) => {
+                if (!compilationFinished) {
+                    // Make columns oscillate during bootup
+                    bar.currentHeight += bar.speed;
+                    if(bar.currentHeight > bar.targetHeight || bar.currentHeight < 10) {
+                        bar.speed *= -1;
+                    }
+                } else {
+                    // Soft settle into exact structural layout heights at run-end
+                    bar.currentHeight += (bar.targetHeight - bar.currentHeight) * 0.1;
+                }
+
+                // Render contribution blocks
+                ctx.fillStyle = `rgba(35, 194, 94, ${0.3 + (bar.currentHeight/200)})`;
+                ctx.fillRect(bar.x, canvas.height - bar.currentHeight - 20, barWidth, bar.currentHeight);
+                ctx.strokeStyle = "rgba(50, 210, 110, 0.4)";
+                ctx.strokeRect(bar.x, canvas.height - bar.currentHeight - 20, barWidth, bar.currentHeight);
+            });
+
+            // 2. Physics logic loop for the jumping dot agent
+            player.vy += player.gravity;
+            player.x += player.vx;
+            player.y += player.vy;
+
+            // Collision mapping with current moving bar heights
+            let currentBarIndex = Math.floor((player.x - startX) / (barWidth + gap));
+            if(currentBarIndex >= 0 && currentBarIndex < barsCount) {
+                let currentBar = bars[currentBarIndex];
+                let surfaceY = canvas.height - currentBar.currentHeight - 20;
+                
+                if(player.y + player.radius >= surfaceY) {
+                    player.y = surfaceY - player.radius;
+                    player.vy = -Math.abs(Math.random() * 4 + 5); // Execute auto vertical bounce code vector
+                }
+            }
+
+            // Boundary clamping safety checks
+            if (player.x > canvas.width) { player.x = 0; }
+            
+            // Draw Jumping Agent Node Particle
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+            ctx.fillStyle = '#f43f5e';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#f43f5e';
+            ctx.fill();
+            ctx.shadowBlur = 0; // Clear shadow stack layout
+
+            // 3. Graceful compilation termination timer triggers
+            if(cycles > 340 && !compilationFinished) {
+                compilationFinished = true;
+                document.getElementById('status').innerText = "DATA CONSOLIDATION SUCCESSFUL";
+                document.getElementById('status').className = "text-xs px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded";
+                document.getElementById('dashboard').style.opacity = "1";
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        // Allow manual trigger override jumps
+        window.addEventListener('keydown', () => {
+            player.vy = -7;
+        });
+
+        loop();
+    </script>
+</body>
+</html>
