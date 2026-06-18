@@ -60,8 +60,8 @@
 </summary>
 <br/>
 <p align="center">
-  <sub>Click below to deploy the arcade matrix terminal execution environment</sub><br/><br/>
-  <a href="https://linux56ax.github.io/" target="_blank">
+  <sub>Deploy the top-down 3D arcade simulation workspace matrix</sub><br/><br/>
+  <a href="index.html" target="_self">
     <img src="https://img.shields.io/badge/Launch_Simulation-23c25e?style=for-the-badge&logo=gnubash&logoColor=white"/>
   </a>
 </p>
