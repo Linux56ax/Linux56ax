@@ -22,7 +22,7 @@
   <br/><br/>
   <a href="https://www.python.org/" target="_blank"><img src="https://skillicons.dev/icons?i=python" width="34" title="Python"/></a>&nbsp;
   <a href="https://opencv.org/" target="_blank"><img src="https://skillicons.dev/icons?i=opencv" width="34" title="OpenCV"/></a>&nbsp;
-  <a href="https://matplotlib.org/" target="_blank"><img src="https://img.icons8.com/external-tal-revivo-bold-tal-revivo/48/ffffff/external-matplotlib-a-plotting-library-for-the-python-programming-language-logo-bold-tal-revivo.png" width="34" title="Matplotlib"/></a>
+  <a href="https://matplotlib.org/" target="_blank"><img src="https://img.shields.io/badge/Matplotlib-ffffff?style=flat&logo=matplotlib&logoColor=black" height="22" title="Matplotlib"/></a>
   <br/><br/>
   <a href="https://pandas.pydata.org/" target="_blank"><img src="https://cdn.simpleicons.org/pandas/ffffff" width="34" height="34" title="Pandas"/></a>&nbsp;
   <a href="https://numpy.org/" target="_blank"><img src="https://cdn.simpleicons.org/numpy/ffffff" width="34" height="34" title="NumPy"/></a>&nbsp;
@@ -55,8 +55,8 @@
 <details>
 <summary>
 <br/>
-<img src="https://img.icons8.com/fluency/64/gaming-mouse.png" width="48"/><br/>
-<b>🎮 Contributions</b>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqSwmozJ91aHxHANorS9QQYunKuGWZTrbIHQ&s" width="48"/><br/>
+<b>🎮 Simulation</b>
 </summary>
 <br/>
 <p align="center">
@@ -74,7 +74,7 @@
 <summary>
 <br/>
 <img src="https://img.icons8.com/fluency/64/contacts.png" width="48"/><br/>
-<b>🔗 Connect with me</b>
+<b>🔗 Connect</b>
 </summary>
 <br/>
 <p align="center">
@@ -90,6 +90,13 @@
 
 </tr>
 </table>
+
+<br/>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Linux56ax&show_icons=true&theme=tokyonight&hide_border=true" width="49%"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=tokyonight&hide_border=true" width="49%"/>
+</p>
 
 <br/>
 
