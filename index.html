@@ -1,118 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skyline Contribution Engine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background: #0d1117; font-family: monospace; overflow: hidden; }
-        .isometric-view {
-            transform: rotateX(55deg) rotateZ(-45deg);
-            transform-style: preserve-3d;
-        }
-        .bar-stack {
-            transform-style: preserve-3d;
-            position: relative;
-        }
-        .face { position: absolute; bottom: 0; left: 0; transition: height 0.05s ease-out; }
-        .top-cap {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            transform: translateZ(var(--h, 4px));
-            transition: transform 0.05s ease-out;
-        }
-        .front-wall { width: 100%; height: var(--h, 4px); transform: rotateX(-90deg); transform-origin: bottom; }
-        .side-wall { width: var(--h, 4px); height: 100%; transform: rotateY(90deg); transform-origin: right; right: 0; }
-    </style>
+<meta charset="UTF-8">
+<title>GitHub Skyline Runner</title>
+
+<style>
+body{
+    margin:0;
+    background:#0d1117;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
+}
+
+#ui{
+    position:absolute;
+    top:20px;
+    left:20px;
+    z-index:100;
+}
+
+button{
+    background:#238636;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+canvas{
+    display:block;
+}
+</style>
 </head>
-<body class="w-screen h-screen flex flex-col items-center justify-center text-slate-300 p-6">
+<body>
 
-    <div class="w-full max-w-4xl mb-4 flex justify-between items-center border-b border-zinc-800 pb-2">
-        <div class="font-bold text-emerald-400 tracking-wider">SKYLINE_GRID_SIMULATOR.SH</div>
-        <div id="countdown" class="text-xs px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded">
-            INITIALIZING SYSTEM: 6s
-        </div>
-    </div>
+<div id="ui">
+    <h2>GitHub Skyline Runner</h2>
+    <p>SPACE / CLICK = Jump</p>
 
-    <div class="relative w-full max-w-4xl h-[460px] bg-[#161b22]/40 border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl">
-        <div id="avatar-dot" class="absolute w-2.5 h-2.5 bg-rose-500 rounded-full shadow-[0_0_12px_#f43f5e] z-50 pointer-events-none transition-all duration-75"></div>
-        <div class="isometric-view grid grid-cols-7 grid-rows-4 gap-4 w-[420px] h-[240px] mt-[-30px]">
-            <div id="matrix-mesh" class="contents"></div>
-        </div>
-    </div>
+    <button onclick="window.open('https://github.com/Linux56ax','_blank')">
+        Visit Linux56ax
+    </button>
 
-    <script>
-        const canvas = document.getElementById('matrix-mesh');
-        const dot = document.getElementById('avatar-dot');
-        const timer = document.getElementById('countdown');
-        
-        const totalNodes = 28;
-        let cells = [];
-        let timeRemaining = 6;
+    <h3 id="score">Score: 0</h3>
+</div>
 
-        const colors = [
-            { top: '#0e4429', front: '#0a301d', side: '#05180e' },
-            { top: '#006d32', front: '#004d23', side: '#002e15' },
-            { top: '#26a641', front: '#1b752e', side: '#10461c' },
-            { top: '#39d353', front: '#28943a', side: '#185923' }
-        ];
+<canvas id="game"></canvas>
 
-        for (let i = 0; i < totalNodes; i++) {
-            const container = document.createElement('div');
-            container.className = 'bar-stack w-full h-full';
-            const variant = Math.floor(Math.random() * colors.length);
-            const height = (variant * 25) + 15;
-            const theme = colors[variant];
+<script>
 
-            container.innerHTML = `
-                <div class="face front-wall w-full" style="background: ${theme.front};"></div>
-                <div class="face side-wall h-full" style="background: ${theme.side};"></div>
-                <div class="top-cap" style="background: ${theme.top};"></div>
-            `;
-            canvas.appendChild(container);
-            cells.push({ el: container, currentH: 5, targetH: height });
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+const TILE_W = 40;
+const TILE_H = 20;
+
+const rows = 7;
+const cols = 120;
+
+const contributions = [];
+
+for(let i=0;i<cols;i++){
+
+    let value;
+
+    if(Math.random() < 0.35){
+        value = 0;
+    }else{
+        value = Math.floor(Math.random()*10)+1;
+    }
+
+    contributions.push(value);
+}
+
+const player = {
+    x:120,
+    y:0,
+    vy:0,
+    size:18,
+    grounded:true
+};
+
+let cameraX = 0;
+let speed = 3;
+let gravity = 0.7;
+let jumpForce = -12;
+let score = 0;
+let gameOver = false;
+
+function iso(x,y,z){
+
+    return {
+        x:(x-y)*TILE_W/2,
+        y:(x+y)*TILE_H/2-z
+    };
+}
+
+function pillarHeight(value){
+    return value*8;
+}
+
+function jump(){
+
+    if(player.grounded && !gameOver){
+
+        player.vy = jumpForce;
+        player.grounded = false;
+    }
+}
+
+window.addEventListener("keydown",e=>{
+    if(e.code==="Space") jump();
+});
+
+window.addEventListener("mousedown",jump);
+window.addEventListener("touchstart",jump);
+
+function drawBlock(x,y,z,h,color){
+
+    const p = iso(x,y,z);
+
+    const sx = canvas.width/2 + p.x - cameraX;
+    const sy = 250 + p.y;
+
+    ctx.fillStyle = color;
+
+    ctx.beginPath();
+    ctx.moveTo(sx,sy);
+    ctx.lineTo(sx+TILE_W/2,sy+TILE_H/2);
+    ctx.lineTo(sx,sy+TILE_H);
+    ctx.lineTo(sx-TILE_W/2,sy+TILE_H/2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle="#3fb950";
+
+    ctx.beginPath();
+    ctx.moveTo(sx-TILE_W/2,sy+TILE_H/2);
+    ctx.lineTo(sx,sy+TILE_H);
+    ctx.lineTo(sx,sy+TILE_H+h);
+    ctx.lineTo(sx-TILE_W/2,sy+TILE_H/2+h);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle="#2ea043";
+
+    ctx.beginPath();
+    ctx.moveTo(sx+TILE_W/2,sy+TILE_H/2);
+    ctx.lineTo(sx,sy+TILE_H);
+    ctx.lineTo(sx,sy+TILE_H+h);
+    ctx.lineTo(sx+TILE_W/2,sy+TILE_H/2+h);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle="#56d364";
+
+    ctx.beginPath();
+    ctx.moveTo(sx,sy);
+    ctx.lineTo(sx+TILE_W/2,sy+TILE_H/2);
+    ctx.lineTo(sx,sy+TILE_H);
+    ctx.lineTo(sx-TILE_W/2,sy+TILE_H/2);
+    ctx.closePath();
+    ctx.fill();
+
+}
+
+function update(){
+
+    if(gameOver) return;
+
+    score++;
+    document.getElementById("score").innerHTML =
+        "Score: "+Math.floor(score/10);
+
+    player.vy += gravity;
+    player.y += player.vy;
+
+    if(player.y > 0){
+        player.y = 0;
+        player.vy = 0;
+        player.grounded = true;
+    }
+
+    cameraX += speed;
+
+    const playerWorld =
+        Math.floor((cameraX+player.x)/TILE_W);
+
+    if(playerWorld >= 0 &&
+       playerWorld < contributions.length){
+
+        const h =
+            pillarHeight(contributions[playerWorld]);
+
+        if(h > 24 && player.y > -h+24){
+
+            gameOver = true;
+
+            setTimeout(()=>{
+                alert("Game Over!");
+                location.reload();
+            },100);
+        }
+    }
+}
+
+function draw(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    for(let c=0;c<cols;c++){
+
+        for(let r=0;r<rows;r++){
+
+            drawBlock(
+                c,
+                r,
+                0,
+                0,
+                "#161b22"
+            );
         }
 
-        let tick = 0, currentIdx = 0, lerp = 0;
+        let h =
+            pillarHeight(contributions[c]);
 
-        function updateScene() {
-            tick++;
-            cells.forEach((cell, i) => {
-                let wave = Math.sin((tick * 0.05) + i) * 10;
-                let h = Math.max(5, cell.targetH + wave);
-                cell.currentH = h;
-                cell.el.style.setProperty('--h', `${h}px`);
-                const cap = cell.el.querySelector('.top-cap');
-                if(cap) cap.style.transform = `translateZ(${h}px)`;
-            });
+        if(h>0){
 
-            lerp += 0.05;
-            if(lerp >= 1) { lerp = 0; currentIdx = (currentIdx + 1) % totalNodes; }
-
-            const target = cells[currentIdx].el;
-            const rect = target.getBoundingClientRect();
-            const pRect = target.parentElement.parentElement.getBoundingClientRect();
-            
-            const px = rect.left - pRect.left + (rect.width / 2);
-            const py = (rect.top - pRect.top) - cells[currentIdx].currentH - (Math.sin(lerp * Math.PI) * 35) + 100;
-
-            dot.style.left = `${px}px`;
-            dot.style.top = `${py}px`;
-
-            requestAnimationFrame(updateScene);
+            drawBlock(
+                c,
+                3,
+                -h,
+                h,
+                "#238636"
+            );
         }
+    }
 
-        const clockInterval = setInterval(() => {
-            timeRemaining--;
-            if (timeRemaining <= 0) {
-                clearInterval(clockInterval);
-                window.location.href = "https://github.com/Linux56ax";
-            } else {
-                timer.innerText = `INITIALIZING SYSTEM: ${timeRemaining}s`;
-            }
-        }, 1000);
+    const p =
+        iso(
+            (cameraX+player.x)/TILE_W,
+            3,
+            player.y
+        );
 
-        updateScene();
-    </script>
+    const px =
+        canvas.width/2 +
+        p.x -
+        cameraX;
+
+    const py =
+        250 +
+        p.y -
+        15;
+
+    ctx.fillStyle="#58a6ff";
+
+    ctx.fillRect(
+        px-10,
+        py-10,
+        20,
+        20
+    );
+
+}
+
+function loop(){
+
+    update();
+    draw();
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+
+</script>
+
 </body>
 </html>
