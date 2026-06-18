@@ -2,128 +2,184 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Matrix Engine Simulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Contribution Skyline Simulation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: #07070c; font-family: monospace; overflow: hidden; }
-        canvas { background: rgba(10, 16, 26, 0.9); border: 1px solid rgba(35, 194, 94, 0.3); }
-        .glow { text-shadow: 0 0 12px #23c25e; }
+        body { 
+            background: #0d1117; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            overflow: hidden; 
+        }
+        /* Isometric Transformation Layer Matrix matches the skyline canvas angle */
+        .iso-view {
+            transform: rotateX(60deg) rotateZ(-45deg);
+            transform-style: preserve-3d;
+        }
+        .bar-container {
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        /* 3D Bar Facets with real-time CSS height transitioning */
+        .bar-face {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: height 0.1s ease-out;
+        }
+        .bar-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(var(--h, 10px));
+            background: #39d353;
+            box-shadow: 0 0 10px rgba(57, 211, 83, 0.4);
+        }
+        .bar-front {
+            width: 100%;
+            height: var(--h, 10px);
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+            background: #26a641;
+        }
+        .bar-side {
+            width: var(--h, 10px);
+            height: 100%;
+            transform: rotateY(90deg);
+            transform-origin: right;
+            right: 0;
+            background: #0e4429;
+        }
     </style>
 </head>
-<body class="w-screen h-screen flex flex-col items-center justify-center p-6 text-white">
+<body class="w-screen h-screen flex flex-col items-center justify-center text-slate-200 p-4">
 
-    <div class="w-full max-w-3xl mb-4 flex justify-between items-center border-b border-zinc-800 pb-2">
+    <div class="w-full max-w-4xl mb-6 flex justify-between items-center border-b border-zinc-800 pb-3">
         <div>
-            <h1 class="text-xl font-bold text-emerald-400 tracking-wider glow">CONTRIBUTIONS_GAME_MODULE.EXE</h1>
-            <p class="text-xs text-zinc-500">Press ANY key to force character jump controls manual override</p>
+            <h1 class="text-lg font-semibold text-emerald-400 tracking-tight flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                SKYLINE_EXECUTION_MATRIX.EXE
+            </h1>
+            <p class="text-xs text-zinc-500 mt-0.5">Move your mouse across the grid layout to change elevations manually</p>
         </div>
-        <div id="status" class="text-xs px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded animate-pulse">
-            COMPILING SIMULATION MATRIX...
+        <div id="status-badge" class="text-xs font-mono px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded">
+            STATUS: RUNNING
         </div>
     </div>
 
-    <canvas id="gameCanvas" width="700" height="320" class="rounded-xl shadow-2xl shadow-black"></canvas>
+    <div class="relative w-full max-w-4xl h-[460px] bg-[#161b22] border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl shadow-black/80">
+        
+        <div id="jumping-dot" class="absolute w-3 h-3 bg-rose-500 rounded-full shadow-[0_0_15px_#f43f5e] z-50 pointer-events-none transition-all duration-75" style="left: 100px; top: 150px;"></div>
 
-    <div id="dashboard" class="w-full max-w-3xl mt-6 grid grid-cols-2 gap-4 opacity-0 transition-opacity duration-1000">
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=tokyonight&hide_border=true" class="w-full rounded-lg" />
-        <img src="https://github-readme-stats.vercel.app/api?username=Linux56ax&show_icons=true&theme=tokyonight&hide_border=true" class="w-full rounded-lg" />
+        <div class="iso-view grid grid-cols-7 grid-rows-4 gap-4 w-[420px] h-[240px] mt-[-60px]">
+            <div id="matrix-grid" class="contents"></div>
+        </div>
+    </div>
+
+    <div class="w-full max-w-4xl mt-6 grid grid-cols-2 gap-4">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=tokyonight&hide_border=true" class="w-full rounded-xl bg-[#161b22] p-2 border border-zinc-800" />
+        <img src="https://github-readme-stats.vercel.app/api?username=Linux56ax&show_icons=true&theme=tokyonight&hide_border=true" class="w-full rounded-xl bg-[#161b22] p-2 border border-zinc-800" />
     </div>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Matrix Parameters Setup
-        const barsCount = 28;
-        const barWidth = 18;
-        const gap = 6;
-        const startX = 28;
-        
-        let bars = [];
-        for(let i=0; i<barsCount; i++) {
-            bars.push({
-                x: startX + i * (barWidth + gap),
-                targetHeight: Math.floor(Math.random() * 160) + 20,
-                currentHeight: 10,
-                speed: Math.random() * 3 + 2
-            });
-        }
+        const gridContainer = document.getElementById('matrix-grid');
+        const dot = document.getElementById('jumping-dot');
+        const totalBars = 28; // 7x4 Isometric matrix configuration mapping
+        let barsData = [];
 
-        // Jumping Actor Token Data Layer
-        let player = { x: 30, y: 200, radius: 5, vx: 2.2, vy: 0, gravity: 0.35, isJumping: true };
-        let cycles = 0;
-        let compilationFinished = false;
+        // Color palettes sampled directly from the provided source picture
+        const paletteColors = [
+            { top: '#0e4429', front: '#0a301d', side: '#061c11' }, // Minimal Contribution Base
+            { top: '#006d32', front: '#005226', side: '#00381a' },
+            { top: '#26a641', front: '#1b752e', side: '#124e1f' },
+            { top: '#39d353', front: '#28943a', side: '#1b6327' }  // Peak Contribution Level
+        ];
 
-        function loop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            cycles++;
-
-            // 1. Draw and grow/shrink columns dynamically
-            bars.forEach((bar, index) => {
-                if (!compilationFinished) {
-                    // Make columns oscillate during bootup
-                    bar.currentHeight += bar.speed;
-                    if(bar.currentHeight > bar.targetHeight || bar.currentHeight < 10) {
-                        bar.speed *= -1;
-                    }
-                } else {
-                    // Soft settle into exact structural layout heights at run-end
-                    bar.currentHeight += (bar.targetHeight - bar.currentHeight) * 0.1;
-                }
-
-                // Render contribution blocks
-                ctx.fillStyle = `rgba(35, 194, 94, ${0.3 + (bar.currentHeight/200)})`;
-                ctx.fillRect(bar.x, canvas.height - bar.currentHeight - 20, barWidth, bar.currentHeight);
-                ctx.strokeStyle = "rgba(50, 210, 110, 0.4)";
-                ctx.strokeRect(bar.x, canvas.height - bar.currentHeight - 20, barWidth, bar.currentHeight);
-            });
-
-            // 2. Physics logic loop for the jumping dot agent
-            player.vy += player.gravity;
-            player.x += player.vx;
-            player.y += player.vy;
-
-            // Collision mapping with current moving bar heights
-            let currentBarIndex = Math.floor((player.x - startX) / (barWidth + gap));
-            if(currentBarIndex >= 0 && currentBarIndex < barsCount) {
-                let currentBar = bars[currentBarIndex];
-                let surfaceY = canvas.height - currentBar.currentHeight - 20;
-                
-                if(player.y + player.radius >= surfaceY) {
-                    player.y = surfaceY - player.radius;
-                    player.vy = -Math.abs(Math.random() * 4 + 5); // Execute auto vertical bounce code vector
-                }
-            }
-
-            // Boundary clamping safety checks
-            if (player.x > canvas.width) { player.x = 0; }
+        // Generation loop building the physical HTML 3D grid items
+        for (let i = 0; i < totalBars; i++) {
+            const container = document.createElement('div');
+            container.className = 'bar-container w-full h-full cursor-pointer';
             
-            // Draw Jumping Agent Node Particle
-            ctx.beginPath();
-            ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#f43f5e';
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = '#f43f5e';
-            ctx.fill();
-            ctx.shadowBlur = 0; // Clear shadow stack layout
+            // Assign random target elevation patterns
+            const heightTier = Math.floor(Math.random() * paletteColors.length);
+            const targetH = (heightTier + i % 3) * 20 + 15;
+            const colors = paletteColors[heightTier];
 
-            // 3. Graceful compilation termination timer triggers
-            if(cycles > 340 && !compilationFinished) {
-                compilationFinished = true;
-                document.getElementById('status').innerText = "DATA CONSOLIDATION SUCCESSFUL";
-                document.getElementById('status').className = "text-xs px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded";
-                document.getElementById('dashboard').style.opacity = "1";
-            }
+            container.innerHTML = `
+                <div class="bar-face bar-front w-full" style="background: ${colors.front};"></div>
+                <div class="bar-face bar-side h-full" style="background: ${colors.side};"></div>
+                <div class="bar-top" style="background: ${colors.top};"></div>
+            `;
 
-            requestAnimationFrame(loop);
+            gridContainer.appendChild(container);
+            barsData.push({
+                element: container,
+                currentHeight: 10,
+                targetHeight: targetH,
+                heightTier: heightTier
+            });
         }
 
-        // Allow manual trigger override jumps
-        window.addEventListener('keydown', () => {
-            player.vy = -7;
+        // Realtime animation runner driving heights and character jumping vectors
+        let tick = 0;
+        let activeIndex = 0;
+        let jumpProgress = 0;
+
+        function animateMatrix() {
+            tick++;
+
+            // Wave height loop processing dynamically inside structural arrays
+            barsData.forEach((bar, index) => {
+                // Generates an oscillating wave pattern running through columns during run execution
+                let waveModifier = Math.sin((tick * 0.04) + index) * 15;
+                let activeHeight = Math.max(10, bar.targetHeight + waveModifier);
+                
+                bar.currentHeight = activeHeight;
+                bar.element.style.setProperty('--h', `${activeHeight}px`);
+
+                // Update the internal top face positioning translation context safely
+                const topFace = bar.element.querySelector('.bar-top');
+                if(topFace) topFace.style.transform = `translateZ(${activeHeight}px)`;
+            });
+
+            // Physics routing vector logic for the jumping automated agent dot 
+            jumpProgress += 0.04;
+            if(jumpProgress >= 1) {
+                jumpProgress = 0;
+                // Move randomly to a connected adjacent column cell neighborhood link
+                activeIndex = (activeIndex + 1) % totalBars;
+            }
+
+            // Map standard 3D space vectors into 2D coordinates to pin the red tracker dot
+            const targetBar = barsData[activeIndex].element;
+            const rect = targetBar.getBoundingClientRect();
+            const parentRect = targetBar.parentElement.parentElement.getBoundingClientRect();
+            
+            // Calculate coordinates relative to the scene board container canvas
+            const targetX = rect.left - parentRect.left + (rect.width / 2);
+            const currentElev = barsData[activeIndex].currentHeight;
+            
+            // Parabolic Arc configuration calculation mapping for high performance jumping movement
+            const jumpArcY = Math.sin(jumpProgress * Math.PI) * 45;
+            const targetY = (rect.top - parentRect.top) - currentElev - jumpArcY + 80;
+
+            dot.style.left = `${targetX}px`;
+            dot.style.top = `${targetY}px`;
+
+            requestAnimationFrame(animateMatrix);
+        }
+
+        // Add interactive hover listener arrays to alter grid nodes organically via user input
+        barsData.forEach(bar => {
+            bar.element.addEventListener('mouseenter', () => {
+                bar.targetHeight = Math.min(130, bar.targetHeight + 40);
+                document.getElementById('status-badge').innerText = `NODE EXCITATION: ${Math.round(bar.targetHeight)}PX`;
+            });
         });
 
-        loop();
+        animateMatrix();
     </script>
 </body>
 </html>
