@@ -1,94 +1,100 @@
-<h1 align="center">
-  Hi <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30"> I'm Subham Majumdar
-</h1>
-
-<h3 align="center">
-  AI & ML (Statistical and Physics Informed) | IoT and Embedded Systems
-</h3>
-
-- Currently working on [SuSi](https://github.com/alitacodes/SuSi)
-
-- Learning **Physics Informed Machine Learning**
-
-- Research study on **Quantum Computation**
-
-- Deepening expertise in **Machine Learning**
-
-<h3 align="left">Connect with me:</h3>
-
-<p align="left">
-
-<a href="https://linkedin.com/in/subham-majumdar-19a403244" target="_blank">
-<img src="https://skillicons.dev/icons?i=linkedin&theme=light" height="45" />
-</a>
-
-<a href="https://www.leetcode.com/_subham_majumdar_" target="_blank">
-<img src="https://cdn.simpleicons.org/leetcode/FFA116" height="45" />
-</a>
-
-<a href="https://auth.geeksforgeeks.org/user/subhammajuooto" target="_blank">
-<img src="https://cdn.simpleicons.org/geeksforgeeks/2F8D46" height="45" />
-</a>
-
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:030318,40:0a1628,100:0d1f3c&height=210&section=header&text=Subham%20Majumdar&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=40&desc=AI%20%26amp%3B%20ML%20%7C%20IoT%20%26amp%3B%20Embedded%20Systems&descAlignY=63&descAlign=50&descSize=13" width="100%"/>
 </p>
 
-<h3 align="left">Languages and Tools:</h3>
+<p align="center"><sub>Click on a folder below to expand its contents</sub></p>
 
+<table align="center" width="100%">
+<tr>
+
+<td align="center" valign="top" width="33%">
+<details open>
+<summary>
+<br/>
+<img src="https://img.icons8.com/fluency/64/folder-invoices--v2.png" width="48"/><br/>
+<b>📂 Skillset</b>
+</summary>
+<br/>
+<p align="center">
+  <a href="https://pytorch.org/" target="_blank"><img src="https://skillicons.dev/icons?i=pytorch" width="36" title="PyTorch"/></a>&nbsp;
+  <a href="https://www.tensorflow.org/" target="_blank"><img src="https://skillicons.dev/icons?i=tensorflow" width="36" title="TensorFlow"/></a>&nbsp;
+  <a href="https://www.python.org/" target="_blank"><img src="https://skillicons.dev/icons?i=python" width="36" title="Python"/></a>
+  <br/><br/>
+  <a href="https://opencv.org/" target="_blank"><img src="https://skillicons.dev/icons?i=opencv" width="36" title="OpenCV"/></a>&nbsp;
+  <a href="https://matplotlib.org/" target="_blank"><img src="https://cdn.simpleicons.org/matplotlib/ffffff" width="36" height="36" title="Matplotlib"/></a>&nbsp;
+  <a href="https://pandas.pydata.org/" target="_blank"><img src="https://cdn.simpleicons.org/pandas/ffffff" width="36" height="36" title="Pandas"/></a>
+  <br/><br/>
+  <a href="https://numpy.org/" target="_blank"><img src="https://cdn.simpleicons.org/numpy/ffffff" width="36" height="36" title="NumPy"/></a>&nbsp;
+  <a href="https://www.mysql.com/" target="_blank"><img src="https://skillicons.dev/icons?i=mysql" width="36" title="MySQL"/></a>
+</p>
+<br/>
+</details>
+</td>
+
+<td align="center" valign="top" width="33%">
+<details>
+<summary>
+<br/>
+<img src="https://img.icons8.com/fluency/64/source-code.png" width="48"/><br/>
+<b>🗂️ Projects</b>
+</summary>
+<br/>
 <p align="left">
+  &nbsp;📁 <b><a href="https://github.com/alitacodes/SuSi">SuSi</a></b><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<sub>↳ System Integration Core Platform</sub>
+  <br/><br/>
+  &nbsp;📁 <b><a href="https://github.com/alitacodes/Watt-Watch">Watt-Watch</a></b><br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;<sub>↳ Power Diagnostic Analytics Hub</sub>
+</p>
+<br/>
+</details>
+</td>
 
-<a href="https://skillicons.dev">
-<img src="https://skillicons.dev/icons?i=arduino,c,cpp,python,java,django,git,linux,mysql,pytorch,sklearn,opencv,tailwind,matlab,github,hadoop&theme=light&perline=13" />
-</a>
+<td align="center" valign="top" width="34%">
+<details>
+<summary>
+<br/>
+<img src="https://img.icons8.com/fluency/64/contacts.png" width="48"/><br/>
+<b>🔗 Connect with me</b>
+</summary>
+<br/>
+<p align="center">
+  <a href="https://linkedin.com/in/subham-majumdar-19a403244" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin" width="38" title="LinkedIn"/></a>&nbsp;
+  <a href="https://github.com/Linux56ax" target="_blank"><img src="https://skillicons.dev/icons?i=github" width="38" title="GitHub"/></a>
+  <br/><br/>
+  <a href="https://www.leetcode.com/_subham_majumdar_" target="_blank"><img src="https://cdn.simpleicons.org/leetcode/FFA116" width="36" height="36" title="LeetCode"/></a>&nbsp;
+  <a href="https://auth.geeksforgeeks.org/user/subhammajuooto" target="_blank"><img src="https://cdn.simpleicons.org/geeksforgeeks/2F8D46" width="36" height="36" title="GeeksforGeeks"/></a>
+</p>
+<br/>
+</details>
+</td>
 
+</tr>
+</table>
+
+<br/>
+
+<p align="center">
+  <b>📊 Activity Metrics Engine</b><br/>
+  <br/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=tokyonight&hide_border=true" alt="Subham's Streak Stats" width="48%"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=Linux56ax&show_icons=true&theme=tokyonight&hide_border=true" alt="Subham's Core GitHub Stats" width="48%"/>
 </p>
 
-<p align="left">
+<br/>
 
-<a href="https://www.oracle.com/database/" target="_blank">
-<img
-  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/oracle/oracle-original.svg"
-  width="48"
-  height="48"
-/>
-</a>
-
-<a href="https://pandas.pydata.org/" target="_blank">
-<img
-  src="https://cdn.simpleicons.org/pandas/150458"
-  width="48"
-  height="48"
-/>
-</a>
-
-<a href="https://numpy.org/" target="_blank">
-<img
-  src="https://cdn.simpleicons.org/numpy/013243"
-  width="48"
-  height="48"
-/>
-</a>
-
-<a href="https://seaborn.pydata.org/" target="_blank">
-<img
-  src="https://cdn.simpleicons.org/seaborn"
-  width="48"
-  height="48"
-/>
-</a>
-
-<a href="https://hive.apache.org/" target="_blank">
-<img
-  src="https://cdn.simpleicons.org/apachehive/FDEE21"
-  width="48"
-  height="48"
-/>
-</a>
-
+<p align="center">
+  <img src="https://img.shields.io/badge/%E2%8A%9E-0078D4?style=flat-square&logoColor=white"/>&nbsp;
+  <a href="https://github.com/Linux56ax"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/></a>&nbsp;
+  <a href="https://linkedin.com/in/subham-majumdar-19a403244"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>&nbsp;
+  <a href="https://www.leetcode.com/_subham_majumdar_"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=flat-square&logo=leetcode&logoColor=white"/></a>&nbsp;
+  <a href="https://auth.geeksforgeeks.org/user/subhammajuooto"><img src="https://img.shields.io/badge/GeeksforGeeks-2F8D46?style=flat-square&logo=geeksforgeeks&logoColor=white"/></a>
 </p>
 
-<p align="left">
-  <img 
-    src="https://github-readme-streak-stats.herokuapp.com/?user=Linux56ax&theme=highcontrast" 
-    alt="Linux56ax" 
-  />
+<br/>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1f3c,60:0a1628,100:030318&height=120&section=footer" width="100%"/>
 </p>
+
+```
