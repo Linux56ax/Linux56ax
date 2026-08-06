@@ -50,8 +50,7 @@
     <img src="https://www.gitskins.com/api/section/projects?username=linux56ax&theme=github-dark" alt="linux56ax projects section" />
   </picture>
 </p>
-## Connect
-LinkedIn: https://www.linkedin.com/in/subham-majumdar-19a403244/ · Email: subhammajumdar.09123@gmail.com
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/social?username=linux56ax&theme=github-dark&linkedin=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fsubham-majumdar-19a403244%2F&email=subhammajumdar.09123%40gmail.com&mode=light" />
