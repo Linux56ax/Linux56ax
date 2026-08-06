@@ -1,7 +1,3 @@
-
-
-**Theme:** GitHub · **Style:** Creative · **Agent:** Data/ML Engineer
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: light)" srcset="https://www.gitskins.com/api/section/hero?username=linux56ax&theme=github-dark&mode=light" />
